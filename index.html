@@ -4,581 +4,384 @@
 <meta name="robots" content="noindex">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Recess — UX Wireframes</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<title>Recess — Wireframes</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Architects+Daughter&display=swap" rel="stylesheet">
 <style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
   :root {
-    --ink: #1a1917;
-    --ink-2: #4a4945;
-    --ink-3: #8a8880;
-    --rule: #e2e0da;
-    --rule-2: #ccc9c0;
-    --bg: #faf9f6;
-    --bg-2: #f2f0eb;
-    --bg-3: #e8e5de;
+    --ink: #222;
+    --ink-2: #555;
+    --ink-3: #999;
+    --bg: #f7f6f3;
+    --bg-2: #eeecea;
+    --bg-3: #e3e1dd;
+    --rule: #dddbd7;
     --blue: #1a5fa8;
     --blue-l: #deeaf8;
     --green: #1a6644;
     --green-l: #d8edd9;
-    --amber: #8a4e00;
+    --amber: #7a4200;
     --amber-l: #fdefd6;
     --purple: #4a2d9e;
     --purple-l: #ebe7fa;
     --teal: #0d6b5e;
     --teal-l: #d4f0eb;
-    --red: #9a2020;
+    --coral: #8a2a12;
     --coral-l: #fde8e3;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     background: var(--bg);
     color: var(--ink);
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.6;
   }
 
-  /* ── Print ── */
   @media print {
-    body { background: white; font-size: 11px; }
-    .cover { page-break-after: always; min-height: auto; padding: 60px; }
-    .page { page-break-before: always; padding: 40px 48px; }
-    .no-print { display: none; }
-    .section { break-inside: avoid; }
-    @page { margin: 0; size: A4 landscape; }
+    .topbar { display: none; }
+    .page { page-break-before: always; }
+    @page { size: A4; margin: 20mm; }
   }
 
-  /* ── Nav ── */
-  .doc-nav {
+  /* topbar */
+  .topbar {
+    background: white;
+    border-bottom: 1px solid var(--rule);
+    padding: 0 32px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--ink);
-    color: white;
-    padding: 0 40px;
-    display: flex;
-    align-items: center;
-    gap: 0;
-    height: 48px;
   }
-  .doc-nav .brand {
-    font-family: 'DM Serif Display', serif;
-    font-size: 16px;
-    margin-right: 32px;
-    color: white;
-    opacity: 0.9;
-  }
-  .doc-nav a {
-    color: rgba(255,255,255,0.55);
-    text-decoration: none;
+  .topbar-brand { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .topbar-sep { color: var(--rule); }
+  .topbar a {
     font-size: 12px;
-    font-weight: 500;
-    padding: 0 16px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.04em;
-    transition: color 0.15s;
-    border-bottom: 2px solid transparent;
+    color: var(--ink-3);
+    text-decoration: none;
+    transition: color .1s;
   }
-  .doc-nav a:hover, .doc-nav a.active {
-    color: white;
-    border-bottom-color: white;
-  }
-  .doc-nav .meta {
-    margin-left: auto;
-    font-size: 11px;
-    color: rgba(255,255,255,0.4);
-    letter-spacing: 0.03em;
-  }
-  .no-print { }
+  .topbar a:hover, .topbar a.active { color: var(--ink); }
+  .topbar-right { margin-left: auto; font-size: 11px; color: var(--ink-3); }
 
-  /* ── Cover ── */
+  /* cover */
   .cover {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px 80px 60px;
-    border-bottom: 1px solid var(--rule-2);
-    position: relative;
-    overflow: hidden;
-  }
-  .cover::before {
-    content: '';
-    position: absolute;
-    top: -120px; right: -120px;
-    width: 480px; height: 480px;
-    border-radius: 50%;
-    border: 1px solid var(--rule-2);
-    opacity: 0.5;
-  }
-  .cover::after {
-    content: '';
-    position: absolute;
-    bottom: -80px; left: 40px;
-    width: 240px; height: 240px;
-    border-radius: 50%;
-    border: 1px solid var(--rule-2);
-    opacity: 0.4;
-  }
-  .cover-eyebrow {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    margin-bottom: 20px;
-  }
-  .cover h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 64px;
-    line-height: 1.05;
-    color: var(--ink);
-    margin-bottom: 8px;
-    max-width: 700px;
-  }
-  .cover h1 em {
-    font-style: italic;
-    color: var(--ink-2);
-  }
-  .cover-sub {
-    font-size: 18px;
-    color: var(--ink-2);
-    font-weight: 300;
-    margin-bottom: 48px;
-  }
-  .cover-meta {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    gap: 0;
-    border-top: 1px solid var(--rule-2);
-    padding-top: 32px;
-    max-width: 720px;
-  }
-  .cover-meta-item {
-    padding-right: 40px;
-  }
-  .cover-meta-item .label {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    margin-bottom: 4px;
-  }
-  .cover-meta-item .value {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--ink);
-  }
-  .data-strip {
-    margin-top: 48px;
-    display: flex;
-    gap: 0;
-    border: 1px solid var(--rule-2);
-    border-radius: 10px;
-    overflow: hidden;
-    max-width: 900px;
+    padding: 64px 48px 56px;
+    border-bottom: 1px solid var(--rule);
     background: white;
   }
-  .data-item {
-    flex: 1;
-    padding: 16px 20px;
-    border-right: 1px solid var(--rule-2);
-  }
-  .data-item:last-child { border-right: none; }
-  .data-item .num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 28px;
-    color: var(--ink);
-    line-height: 1;
-    margin-bottom: 3px;
-  }
-  .data-item .num.red { color: var(--red); }
-  .data-item .desc {
+  .cover-label {
     font-size: 11px;
-    color: var(--ink-3);
-    line-height: 1.4;
-  }
-
-  /* ── Pages ── */
-  .page {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 60px 48px 80px;
-    border-bottom: 1px solid var(--rule);
-  }
-  .page-header {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    margin-bottom: 6px;
-  }
-  .page-num {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    min-width: 24px;
-  }
-  .page-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 36px;
-    color: var(--ink);
-    line-height: 1.1;
-  }
-  .page-desc {
-    font-size: 13px;
-    color: var(--ink-2);
-    margin-bottom: 40px;
-    padding-left: 40px;
-    font-weight: 300;
-    font-style: italic;
-  }
-
-  /* ── Sections ── */
-  .section {
-    margin-bottom: 40px;
-  }
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-  .section-num {
-    font-size: 10px;
-    font-weight: 500;
     color: var(--ink-3);
     letter-spacing: 0.06em;
-    min-width: 20px;
-  }
-  .section-title {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
     text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .cover-title {
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .cover-sub {
+    font-size: 16px;
     color: var(--ink-2);
+    margin-bottom: 40px;
   }
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: var(--rule);
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    margin-bottom: 40px;
   }
-
-  /* ── Wireframe blocks ── */
-  .wf-row {
+  .cover-meta-item .mlabel { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); margin-bottom: 3px; }
+  .cover-meta-item .mval { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .stats {
     display: flex;
     gap: 0;
-    margin-bottom: 8px;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 760px;
+    background: var(--bg);
   }
-  .wf-label {
+  .stat {
+    flex: 1;
+    padding: 14px 18px;
+    border-right: 1px solid var(--rule);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-size: 24px; font-weight: 500; color: var(--ink); line-height: 1; margin-bottom: 3px; }
+  .stat-num.red { color: #c0392b; }
+  .stat-desc { font-size: 11px; color: var(--ink-3); line-height: 1.4; }
+
+  /* intro */
+  .intro {
+    padding: 48px;
+    border-bottom: 1px solid var(--rule);
+    max-width: 760px;
+  }
+  .intro p { font-size: 15px; color: var(--ink-2); line-height: 1.8; margin-bottom: 16px; }
+  .intro p:last-child { margin-bottom: 0; }
+  .intro strong { color: var(--ink); font-weight: 500; }
+  .intro-chips { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+  .intro-chip { font-size: 12px; padding: 5px 12px; border-radius: 20px; background: var(--bg-2); color: var(--ink-2); border: 1px solid var(--rule); }
+
+  /* page */
+  .page { padding: 48px; border-bottom: 1px solid var(--rule); }
+  .page-header { margin-bottom: 6px; display: flex; align-items: baseline; gap: 12px; }
+  .page-tag { font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; }
+  .page-title { font-size: 26px; font-weight: 500; color: var(--ink); }
+  .page-desc { font-size: 13px; color: var(--ink-3); margin-bottom: 36px; padding-left: 2px; }
+
+  /* sections */
+  .section { margin-bottom: 32px; }
+  .sec-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+  /* wireframe rows */
+  .wf-row { display: flex; gap: 6px; margin-bottom: 6px; align-items: stretch; }
+  .wf-lbl {
+    min-width: 100px;
+    max-width: 100px;
     font-size: 11px;
     color: var(--ink-3);
-    min-width: 110px;
-    max-width: 110px;
-    padding-right: 14px;
+    padding-right: 10px;
     padding-top: 10px;
     text-align: right;
-    font-weight: 400;
     line-height: 1.4;
   }
-  .wf-content {
+  .wf-blocks { flex: 1; display: flex; gap: 6px; }
+  .wf-b {
     flex: 1;
-    display: flex;
-    gap: 6px;
-  }
-  .wf-block {
-    flex: 1;
-    background: white;
-    border: 1px solid var(--rule-2);
-    border-radius: 8px;
-    padding: 10px 14px;
+    border: 1.5px dashed var(--bg-3);
+    border-radius: 6px;
+    padding: 9px 12px;
     font-size: 12px;
     color: var(--ink-2);
     line-height: 1.5;
-    min-height: 40px;
+    min-height: 38px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background: white;
   }
-  .wf-block.center { text-align: center; align-items: center; }
-  .wf-block.tall { min-height: 72px; }
-  .wf-block.xtall { min-height: 100px; }
-  .wf-block.hero { min-height: 120px; }
-  .wf-block strong { font-weight: 500; color: var(--ink); display: block; margin-bottom: 2px; font-size: 13px; }
-  .wf-block .sub { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
-  .wf-block .cta-p { font-size: 11px; font-weight: 500; color: var(--green); margin-top: 6px; }
-  .wf-block .cta-s { font-size: 11px; color: var(--blue); margin-top: 3px; }
-  .wf-block .cta-t { font-size: 10px; color: var(--ink-3); margin-top: 3px; }
-  .wf-block .stars { font-size: 11px; color: #b87a00; margin-top: 3px; }
+  .wf-b.center { text-align: center; align-items: center; }
+  .wf-b.tall { min-height: 64px; }
+  .wf-b.xtall { min-height: 90px; }
+  .wf-b strong { font-weight: 500; color: var(--ink); display: block; margin-bottom: 2px; font-size: 12px; }
+  .wf-b .sub { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+  .wf-b .cta { font-size: 11px; font-weight: 500; margin-top: 5px; }
+  .wf-b .cta.p { color: var(--green); }
+  .wf-b .cta.s { color: var(--blue); }
+  .wf-b .cta.t { color: var(--ink-3); }
 
-  .wf-block.primary { background: var(--blue-l); border-color: #a8c8f0; }
-  .wf-block.primary strong, .wf-block.primary { color: var(--blue); }
-  .wf-block.success { background: var(--green-l); border-color: #a0d4b0; }
-  .wf-block.success strong, .wf-block.success { color: var(--green); }
-  .wf-block.amber { background: var(--amber-l); border-color: #e8c880; }
-  .wf-block.amber strong, .wf-block.amber { color: var(--amber); }
-  .wf-block.purple { background: var(--purple-l); border-color: #c0b0f0; }
-  .wf-block.purple strong, .wf-block.purple { color: var(--purple); }
-  .wf-block.teal { background: var(--teal-l); border-color: #90d4c8; }
-  .wf-block.teal strong, .wf-block.teal { color: var(--teal); }
-  .wf-block.muted { background: var(--bg-2); border-color: var(--rule); color: var(--ink-3); }
-  .wf-block.dark { background: var(--ink); color: rgba(255,255,255,0.8); border-color: var(--ink); }
-  .wf-block.dark strong { color: white; }
-  .wf-block.img { background: var(--bg-3); border-style: dashed; color: var(--ink-3); font-size: 11px; font-style: italic; }
+  .wf-b.primary { border-color: #a8c8f0; background: var(--blue-l); }
+  .wf-b.primary, .wf-b.primary strong { color: var(--blue); }
+  .wf-b.success { border-color: #a0d4b0; background: var(--green-l); }
+  .wf-b.success, .wf-b.success strong { color: var(--green); }
+  .wf-b.amber { border-color: #e8c880; background: var(--amber-l); }
+  .wf-b.amber, .wf-b.amber strong { color: var(--amber); }
+  .wf-b.purple { border-color: #c0b0f0; background: var(--purple-l); }
+  .wf-b.purple, .wf-b.purple strong { color: var(--purple); }
+  .wf-b.teal { border-color: #90d4c8; background: var(--teal-l); }
+  .wf-b.teal, .wf-b.teal strong { color: var(--teal); }
+  .wf-b.muted { background: var(--bg-2); border-color: var(--rule); color: var(--ink-3); }
+  .wf-b.img { background: var(--bg-2); border-style: dashed; color: var(--ink-3); font-size: 11px; font-style: italic; }
+  .wf-b.dark { background: var(--ink); border-color: var(--ink); color: rgba(255,255,255,0.8); }
+  .wf-b.dark strong { color: white; }
 
-  .top-accent-purple { border-top: 3px solid #7b5ea7; }
-  .top-accent-teal { border-top: 3px solid var(--teal); }
-  .top-accent-amber { border-top: 3px solid #c88a20; }
-  .top-accent-muted { border-top: 3px solid var(--rule-2); }
+  .ta-purple { border-top: 2px solid #9b6cf0; }
+  .ta-teal { border-top: 2px solid var(--teal); }
+  .ta-amber { border-top: 2px solid #d4940a; }
+  .ta-muted { border-top: 2px solid var(--rule); }
 
-  /* ── Annotations ── */
-  .annot {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin: 6px 0 0 110px;
-    padding: 6px 10px 6px 12px;
-    border-left: 2px solid var(--rule-2);
+  /* annotation */
+  .note {
     font-size: 11px;
     color: var(--ink-3);
+    margin: 5px 0 0 106px;
+    padding: 5px 10px;
+    border-left: 2px solid var(--rule);
     line-height: 1.5;
   }
-  .annot.red { border-left-color: #e09090; color: var(--red); }
-  .annot.green { border-left-color: #80c890; color: var(--green); }
-  .annot.blue { border-left-color: #90b8e8; color: var(--blue); }
+  .note.red { border-color: #e09090; color: #9a2020; }
+  .note.green { border-color: #80c890; color: var(--green); }
+  .note.blue { border-color: #90b8e8; color: var(--blue); }
 
-  /* ── Product cards ── */
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-left: 110px;
-    margin-bottom: 8px;
-  }
-  .prod-card {
-    background: white;
-    border: 1px solid var(--rule-2);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .prod-card-img {
-    background: var(--bg-3);
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    color: var(--ink-3);
-    font-style: italic;
-    border-bottom: 1px solid var(--rule);
-  }
-  .prod-card-body { padding: 10px 12px; }
-  .prod-card-name { font-size: 12px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
-  .prod-card-sub { font-size: 11px; color: var(--ink-3); margin-bottom: 4px; }
-  .prod-card-stars { font-size: 10px; color: #b87a00; margin-bottom: 4px; }
-  .prod-card-attrs { font-size: 10px; color: var(--ink-3); margin-bottom: 6px; line-height: 1.4; }
-  .prod-card-price { font-size: 12px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
-  .prod-card-price span { font-size: 10px; font-weight: 400; color: var(--green); }
-  .prod-card-cta-p { background: var(--green-l); color: var(--green); font-size: 11px; font-weight: 500; padding: 6px 10px; border-radius: 5px; text-align: center; margin-bottom: 4px; }
-  .prod-card-cta-s { background: var(--blue-l); color: var(--blue); font-size: 11px; padding: 5px 10px; border-radius: 5px; text-align: center; margin-bottom: 4px; }
-  .prod-card-cta-t { color: var(--ink-3); font-size: 10px; text-align: center; padding: 3px 0; }
+  /* chips */
+  .chips { display: flex; gap: 5px; flex-wrap: wrap; }
+  .chip { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--rule); color: var(--ink-2); background: white; }
+  .chip.on { background: var(--purple-l); color: var(--purple); border-color: #c0b0f0; font-weight: 500; }
 
-  /* ── Note box ── */
-  .note-box {
-    background: var(--amber-l);
-    border: 1px solid #e8c880;
-    border-radius: 10px;
-    padding: 16px 20px;
-    font-size: 12px;
-    color: var(--amber);
-    line-height: 1.7;
-    margin-top: 40px;
-  }
-  .note-box strong { font-weight: 500; color: var(--amber); }
+  /* product cards */
+  .card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-left: 106px; margin-bottom: 6px; }
+  .pcard { background: white; border: 1.5px dashed var(--bg-3); border-radius: 8px; overflow: hidden; }
+  .pcard-img { background: var(--bg-2); height: 72px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--ink-3); font-style: italic; border-bottom: 1px solid var(--rule); }
+  .pcard-body { padding: 10px; }
+  .pcard-name { font-size: 12px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+  .pcard-sub { font-size: 11px; color: var(--ink-3); margin-bottom: 4px; }
+  .pcard-stars { font-size: 10px; color: #b87a00; margin-bottom: 4px; }
+  .pcard-attrs { font-size: 10px; color: var(--ink-3); margin-bottom: 6px; }
+  .pcard-price { font-size: 12px; font-weight: 500; margin-bottom: 8px; }
+  .pcard-price span { font-size: 10px; font-weight: 400; color: var(--green); }
+  .pc-cta { font-size: 11px; padding: 5px 8px; border-radius: 5px; text-align: center; margin-bottom: 3px; }
+  .pc-cta.p { background: var(--green-l); color: var(--green); font-weight: 500; }
+  .pc-cta.s { background: var(--blue-l); color: var(--blue); }
+  .pc-cta.t { color: var(--ink-3); font-size: 10px; }
 
-  /* ── Dividers ── */
-  hr.page-rule { border: none; border-top: 1px solid var(--rule); margin: 32px 0; }
-
-  /* ── Mobile side panel ── */
-  .with-mobile {
-    display: grid;
-    grid-template-columns: 1fr 200px;
-    gap: 20px;
-    align-items: start;
-  }
-  .mobile-col-label {
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    margin-bottom: 8px;
-    font-weight: 500;
-  }
-  .m-block {
-    background: white;
-    border: 1px solid var(--rule-2);
-    border-radius: 6px;
-    padding: 7px 10px;
-    font-size: 10px;
-    color: var(--ink-2);
-    text-align: center;
-    margin-bottom: 4px;
-    line-height: 1.4;
-  }
-  .m-block.p { background: var(--green-l); color: var(--green); font-weight: 500; border-color: #a0d4b0; }
-  .m-block.s { background: var(--blue-l); color: var(--blue); border-color: #a8c8f0; }
-  .m-block.img { background: var(--bg-3); border-style: dashed; color: var(--ink-3); font-style: italic; }
-  .m-block.nav { display: flex; justify-content: space-between; align-items: center; font-weight: 500; }
-  .m-chips { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 5px; }
-  .m-chip { font-size: 9px; padding: 3px 8px; border-radius: 20px; border: 1px solid var(--rule-2); color: var(--ink-3); background: white; }
-  .m-chip.active { background: var(--purple-l); color: var(--purple); border-color: #c0b0f0; font-weight: 500; }
-
-  /* ── Chip strips ── */
-  .chip-strip { display: flex; gap: 6px; flex-wrap: wrap; }
-  .chip { font-size: 11px; padding: 4px 12px; border-radius: 20px; border: 1px solid var(--rule-2); color: var(--ink-2); background: white; }
-  .chip.active { background: var(--purple-l); color: var(--purple); border-color: #c0b0f0; font-weight: 500; }
-
-  /* ── PDP buy zone ── */
-  .pdp-hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-left: 110px;
-    margin-bottom: 8px;
-  }
+  /* pdp */
+  .pdp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-left: 106px; margin-bottom: 6px; }
   .pdp-imgs { display: flex; flex-direction: column; gap: 6px; }
-  .pdp-img-main { background: var(--bg-3); border: 1px dashed var(--rule-2); border-radius: 8px; height: 180px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--ink-3); font-style: italic; }
-  .pdp-img-row { display: flex; gap: 6px; }
-  .pdp-img-thumb { background: var(--bg-2); border: 1px solid var(--rule); border-radius: 6px; flex: 1; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--ink-3); }
-  .buy-zone { background: white; border: 1px solid var(--rule-2); border-radius: 10px; padding: 20px; }
-  .buy-eyebrow { font-size: 10px; color: var(--ink-3); letter-spacing: 0.06em; margin-bottom: 4px; }
-  .buy-title { font-size: 22px; font-family: 'DM Serif Display', serif; color: var(--ink); margin-bottom: 4px; }
-  .buy-sub { font-size: 12px; color: var(--ink-2); margin-bottom: 8px; }
-  .buy-stars { font-size: 12px; color: #b87a00; margin-bottom: 10px; }
-  .buy-attrs { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
-  .attr-tag { font-size: 10px; padding: 3px 9px; border-radius: 5px; background: var(--bg-2); border: 1px solid var(--rule); color: var(--ink-2); }
-  .buy-divider { border: none; border-top: 1px solid var(--rule); margin: 12px 0; }
-  .buy-option-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
-  .buy-option { border: 1px solid var(--rule-2); border-radius: 8px; padding: 10px 12px; cursor: pointer; }
-  .buy-option.selected { border-color: var(--green); background: var(--green-l); }
-  .buy-option .opt-label { font-size: 10px; color: var(--ink-3); margin-bottom: 2px; }
-  .buy-option .opt-price { font-size: 14px; font-weight: 500; color: var(--ink); }
-  .buy-option .opt-save { font-size: 10px; color: var(--green); }
-  .buy-cta-p { background: var(--green); color: white; font-weight: 500; font-size: 14px; padding: 13px; border-radius: 8px; text-align: center; margin-bottom: 8px; }
-  .buy-cta-s { background: var(--blue-l); color: var(--blue); font-size: 13px; padding: 11px; border-radius: 8px; text-align: center; margin-bottom: 8px; font-weight: 500; }
-  .buy-cta-t { background: var(--bg-2); color: var(--ink-2); font-size: 12px; padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 10px; }
-  .buy-trust { font-size: 10px; color: var(--ink-3); text-align: center; }
+  .pdp-main { background: var(--bg-2); border: 1.5px dashed var(--bg-3); border-radius: 8px; height: 160px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--ink-3); font-style: italic; }
+  .pdp-thumbs { display: flex; gap: 6px; }
+  .pdp-thumb { flex: 1; background: var(--bg-2); border: 1px solid var(--rule); border-radius: 5px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--ink-3); }
+  .buy-box { background: white; border: 1.5px dashed var(--bg-3); border-radius: 8px; padding: 18px; }
+  .buy-ey { font-size: 10px; color: var(--ink-3); margin-bottom: 3px; }
+  .buy-title { font-size: 20px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+  .buy-sub2 { font-size: 12px; color: var(--ink-2); margin-bottom: 6px; }
+  .buy-stars2 { font-size: 11px; color: #b87a00; margin-bottom: 10px; }
+  .buy-attrs { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+  .attr { font-size: 10px; padding: 2px 8px; border-radius: 4px; background: var(--bg-2); border: 1px solid var(--rule); color: var(--ink-2); }
+  .buy-div { border: none; border-top: 1px solid var(--rule); margin: 12px 0; }
+  .buy-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+  .buy-opt { border: 1.5px dashed var(--bg-3); border-radius: 6px; padding: 8px 10px; }
+  .buy-opt.on { border-color: #a0d4b0; background: var(--green-l); }
+  .opt-lbl { font-size: 10px; color: var(--ink-3); margin-bottom: 2px; }
+  .opt-price { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .opt-save { font-size: 10px; color: var(--green); }
+  .bcta { font-size: 13px; font-weight: 500; padding: 11px; border-radius: 6px; text-align: center; margin-bottom: 6px; }
+  .bcta.p { background: var(--green); color: white; }
+  .bcta.s { background: var(--blue-l); color: var(--blue); }
+  .bcta.t { background: var(--bg-2); color: var(--ink-2); font-size: 12px; }
+  .buy-trust { font-size: 10px; color: var(--ink-3); text-align: center; margin-top: 8px; }
+
+  /* note box */
+  .open-q { background: var(--amber-l); border: 1px solid #e8c880; border-radius: 8px; padding: 14px 18px; font-size: 12px; color: var(--amber); line-height: 1.7; margin-top: 32px; }
+  .open-q strong { font-weight: 500; }
 </style>
 </head>
 <body>
 
-<nav class="doc-nav no-print">
-  <span class="brand">Recess</span>
-  <a href="#homepage" class="active">Homepage</a>
+<nav class="topbar">
+  <span class="topbar-brand">Recess</span>
+  <span class="topbar-sep">·</span>
+  <a href="#home" class="active">Homepage</a>
   <a href="#plp">PLP</a>
   <a href="#pdp">PDP</a>
-  <span class="meta">Wireframes v1 · May 2026 · Draft</span>
+  <span class="topbar-right">Draft · May 2026</span>
 </nav>
 
 <!-- COVER -->
-<section class="cover">
-  <div class="cover-eyebrow">Wireframes · v1 · Draft for review</div>
-  <h1>Recess<br><em>UX Wireframes</em></h1>
-  <div class="cover-sub">Homepage &nbsp;·&nbsp; PLP &nbsp;·&nbsp; PDP &nbsp;·&nbsp; Desktop + Mobile</div>
+<div class="cover">
+  <div class="cover-label">Wireframes · rough draft</div>
+  <div class="cover-title">Recess — wireframes</div>
+  <div class="cover-sub">Homepage · PLP · PDP · desktop + mobile</div>
   <div class="cover-meta">
-    <div class="cover-meta-item"><div class="label">Project</div><div class="value">takearecess.com redesign</div></div>
-    <div class="cover-meta-item"><div class="label">Date</div><div class="value">May 2026</div></div>
-    <div class="cover-meta-item"><div class="label">Status</div><div class="value">Rough draft — more research TBD</div></div>
-    <div class="cover-meta-item"><div class="label">Next step</div><div class="value">Review after Monday call</div></div>
+    <div class="cover-meta-item"><div class="mlabel">Project</div><div class="mval">takearecess.com redesign</div></div>
+    <div class="cover-meta-item"><div class="mlabel">Date</div><div class="mval">May 2026</div></div>
+    <div class="cover-meta-item"><div class="mlabel">Status</div><div class="mval">Rough draft — for discussion</div></div>
+    <div class="cover-meta-item"><div class="mlabel">Next</div><div class="mval">Your feedback → refined WFs</div></div>
   </div>
-  <div class="data-strip">
-    <div class="data-item"><div class="num red">0.42%</div><div class="desc">Ecomm CVR<br>down 33%</div></div>
-    <div class="data-item"><div class="num">81%</div><div class="desc">Mobile traffic<br>converts at half desktop rate</div></div>
-    <div class="data-item"><div class="num">95%</div><div class="desc">New visitors<br>need brand education first</div></div>
-    <div class="data-item"><div class="num">75%</div><div class="desc">Purchases from<br>returning customers</div></div>
-    <div class="data-item"><div class="num">70%</div><div class="desc">Sales via<br>Amazon</div></div>
-    <div class="data-item"><div class="num">1.5</div><div class="desc">Sessions to<br>purchase decision</div></div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num red">0.42%</div><div class="stat-desc">CVR · down 33%</div></div>
+    <div class="stat"><div class="stat-num">81%</div><div class="stat-desc">Mobile traffic · converts at half desktop rate</div></div>
+    <div class="stat"><div class="stat-num">95%</div><div class="stat-desc">New visitors · need brand education first</div></div>
+    <div class="stat"><div class="stat-num">75%</div><div class="stat-desc">Purchases from returning customers</div></div>
+    <div class="stat"><div class="stat-num">70%</div><div class="stat-desc">Sales via Amazon</div></div>
   </div>
-</section>
+</div>
 
-<!-- PAGE 1: HOMEPAGE -->
-<section class="page" id="homepage">
+<!-- INTRO -->
+<div class="intro">
+  <p><strong>Rough on purpose.</strong></p>
+  <p>This is our first pass at how the site could be structured, built straight from the kickoff call, Eric's audit, and everything you shared with us. Boxes and labels, not colors and fonts. Think of it as us thinking out loud.</p>
+  <p>Some things in here we feel pretty confident about based on the data. Others are genuinely TBD and we need your brain on them. Either way, nothing is precious. If something feels off, tell us.</p>
+  <p>Let's use this as a conversation starter and go from here.</p>
+  <div class="intro-chips">
+    <span class="intro-chip">Homepage</span>
+    <span class="intro-chip">PLP</span>
+    <span class="intro-chip">PDP</span>
+    <span class="intro-chip">Desktop + mobile</span>
+    <span class="intro-chip">Informed by CRO audit + kickoff call</span>
+  </div>
+</div>
+
+<!-- HOMEPAGE -->
+<div class="page" id="home">
   <div class="page-header">
-    <span class="page-num">01</span>
-    <h2 class="page-title">Homepage</h2>
+    <span class="page-tag">01</span>
+    <div class="page-title">Homepage</div>
   </div>
-  <div class="page-desc">Mobile-first · educate first, then direct to preferred purchase channel · evergreen (no rotating slider)</div>
+  <div class="page-desc">Mobile first · educate first then direct to preferred purchase channel · evergreen</div>
 
-  <!-- NAV -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">A</span>
-      <span class="section-title">Navigation · Horizontal · Solution-led</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Nav · horizontal · solution-led</div>
     <div class="wf-row">
-      <div class="wf-label">Nav bar</div>
-      <div class="wf-content">
-        <div class="wf-block dark" style="flex:0 0 80px;"><strong style="color:white;">Recess</strong></div>
-        <div class="wf-block" style="flex:4;">Lift me up &nbsp;·&nbsp; Help me unwind &nbsp;·&nbsp; Happy hour &nbsp;·&nbsp; Wellness &nbsp;·&nbsp; Where to buy</div>
-        <div class="wf-block success center" style="flex:0 0 140px;"><strong>Subscribe</strong></div>
-        <div class="wf-block muted center" style="flex:0 0 100px;">Search · Cart</div>
+      <div class="wf-lbl">Nav</div>
+      <div class="wf-blocks">
+        <div class="wf-b dark" style="flex:0 0 70px;"><strong style="color:white;">Recess</strong></div>
+        <div class="wf-b" style="flex:4;">Lift me up &nbsp;·&nbsp; Help me unwind &nbsp;·&nbsp; Happy hour &nbsp;·&nbsp; Wellness &nbsp;·&nbsp; Where to buy</div>
+        <div class="wf-b success center" style="flex:0 0 120px;"><strong>Subscribe</strong></div>
+        <div class="wf-b muted center" style="flex:0 0 80px;">Cart</div>
       </div>
     </div>
-    <div class="annot">Solution-led categories (not product names) · horizontal layout reduces clicks and shows catalog breadth · Subscribe as primary nav CTA per meeting decision</div>
+    <div class="note">Solution-led categories, not product names · horizontal to reduce clicks · Subscribe as primary CTA per meeting</div>
   </div>
 
-  <!-- HERO -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">B</span>
-      <span class="section-title">Hero · Evergreen brand introduction — no rotating slider</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Hero · evergreen · no rotating slider</div>
     <div class="wf-row">
-      <div class="wf-label">Announcement</div>
-      <div class="wf-content">
-        <div class="wf-block amber center">"The original functional beverage. Find your moment." — single brand statement on homepage</div>
+      <div class="wf-lbl">Announce</div>
+      <div class="wf-blocks">
+        <div class="wf-b amber center">"The original functional beverage. Find your moment." — single brand statement on homepage</div>
       </div>
     </div>
-    <div class="annot blue">CRO: replace scrolling multi-message marquee · homepage = one brand statement · PDPs = free shipping or discount offer</div>
+    <div class="note blue">CRO: swap scrolling marquee for single message per template · homepage = brand statement · PDPs = free shipping offer</div>
     <br>
     <div class="wf-row">
-      <div class="wf-label">Hero</div>
-      <div class="wf-content">
-        <div class="wf-block hero" style="flex:3;">
+      <div class="wf-lbl">Hero</div>
+      <div class="wf-blocks">
+        <div class="wf-b xtall" style="flex:3;">
           <strong>"A new way to unwind."</strong>
-          <div class="sub">One-line UVP — what Recess is and what it does for you</div>
+          <div class="sub">One-line UVP · what Recess is and does</div>
           <div style="margin-top:8px;display:flex;gap:8px;">
-            <span style="font-size:11px;font-weight:500;color:var(--purple);">Find my moment →</span>
-            <span style="font-size:11px;font-weight:500;color:var(--green);">Subscribe & save</span>
+            <span class="cta p">Find my moment →</span>
+            <span class="cta s">Subscribe & save</span>
           </div>
           <div style="margin-top:6px;font-size:11px;color:#b87a00;">★★★★★ 50,000+ happy customers</div>
         </div>
-        <div class="wf-block hero img" style="flex:2;">[ Lifestyle hero image ]<br>product + ingredient scene<br>not packaging-only</div>
+        <div class="wf-b xtall img" style="flex:2;">[ Lifestyle hero image ]<br>product + ingredient scene</div>
       </div>
     </div>
-    <div class="annot red">CRO: 95% of visitors are new → introduce brand first, product second · evergreen (no stale campaign content) · trust signal embedded in hero · lifestyle imagery · dual CTA: discovery + subscribe</div>
+    <div class="note red">CRO: 95% new visitors · introduce brand first, product second · evergreen (no stale campaign content) · trust signal in hero · lifestyle imagery</div>
   </div>
 
-  <!-- NEED STATE -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">C</span>
-      <span class="section-title">"Find your moment" · Need-state selector</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">"Find your moment" · need-state selector</div>
     <div class="wf-row">
-      <div class="wf-label">Mood selector</div>
-      <div class="wf-content">
-        <div class="wf-block" style="padding:12px 14px;">
-          <div class="chip-strip">
-            <span class="chip active">Lift me up</span>
+      <div class="wf-lbl">Mood chips</div>
+      <div class="wf-blocks">
+        <div class="wf-b" style="padding:10px 12px;">
+          <div class="chips">
+            <span class="chip on">Lift me up</span>
             <span class="chip">Help me unwind</span>
             <span class="chip">Happy hour</span>
             <span class="chip">Daily wellness</span>
@@ -588,219 +391,129 @@
       </div>
     </div>
     <div class="wf-row">
-      <div class="wf-label">Product cards</div>
-      <div class="wf-content">
-        <div class="wf-block tall top-accent-purple center">
-          <strong>Mood drinks</strong>
-          <div class="sub">Calm · unwind · decompress</div>
-          <div class="cta-p">Shop · Buy on Amazon →</div>
-        </div>
-        <div class="wf-block tall top-accent-teal center">
-          <strong>Zero proof mocktails</strong>
-          <div class="sub">Happy hour · social · 0% ABV</div>
-          <div class="cta-p">Shop · Buy on Amazon →</div>
-        </div>
-        <div class="wf-block tall top-accent-amber center">
-          <strong>Mood powders</strong>
-          <div class="sub">Daily ritual · functional wellness</div>
-          <div class="cta-p">Shop · Buy on Amazon →</div>
-        </div>
-        <div class="wf-block tall top-accent-muted center muted">
-          <strong>Gummies + Soda</strong>
-          <div class="sub">Coming soon</div>
-          <div style="font-size:11px;color:var(--ink-3);margin-top:6px;">Notify me →</div>
-        </div>
+      <div class="wf-lbl">Product cards</div>
+      <div class="wf-blocks">
+        <div class="wf-b tall ta-purple center"><strong>Mood drinks</strong><div class="sub">Calm · unwind · decompress</div><div class="cta p">Shop · Buy on Amazon →</div></div>
+        <div class="wf-b tall ta-teal center"><strong>Zero proof mocktails</strong><div class="sub">Happy hour · social · 0% ABV</div><div class="cta p">Shop · Buy on Amazon →</div></div>
+        <div class="wf-b tall ta-amber center"><strong>Mood powders</strong><div class="sub">Daily ritual · functional wellness</div><div class="cta p">Shop · Buy on Amazon →</div></div>
+        <div class="wf-b tall ta-muted muted center"><strong>Gummies + Soda</strong><div class="sub">Coming soon</div><div class="cta t">Notify me →</div></div>
       </div>
     </div>
-    <div class="annot">Happly "choose your mood" pattern from reference deck · color-coded per product line · each card: lifestyle image + benefit statement + dual CTA (DTC + Amazon) · upcoming lines shown as teaser</div>
+    <div class="note">Happly "choose your mood" pattern from reference deck · color per product line · lifestyle image + benefit + dual CTA per card</div>
   </div>
 
-  <!-- SOCIAL PROOF -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">D</span>
-      <span class="section-title">Social proof + press · Moved above fold</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Social proof + press · moved above fold</div>
     <div class="wf-row">
-      <div class="wf-label">Press strip</div>
-      <div class="wf-content">
-        <div class="wf-block center muted">BevNet</div>
-        <div class="wf-block center muted">Forbes</div>
-        <div class="wf-block center muted">Nylon</div>
-        <div class="wf-block center muted">Vogue</div>
-        <div class="wf-block center muted">Cosmopolitan</div>
-        <div class="wf-block center muted">NY Times</div>
+      <div class="wf-lbl">Press</div>
+      <div class="wf-blocks">
+        <div class="wf-b muted center">BevNet</div>
+        <div class="wf-b muted center">Forbes</div>
+        <div class="wf-b muted center">Nylon</div>
+        <div class="wf-b muted center">Vogue</div>
+        <div class="wf-b muted center">Cosmo</div>
+        <div class="wf-b muted center">NY Times</div>
       </div>
     </div>
-    <div class="annot red">CRO: trust signals currently too far down page · move press logos + review count high · helps 95% new visitors build confidence immediately</div>
+    <div class="note red">CRO: trust signals currently too far down the page · move high · 95% new visitors need confidence fast</div>
   </div>
 
-  <!-- EDUCATION -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">E</span>
-      <span class="section-title">Product education · 3-column · no scrolling required</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Education · 3 columns · no scrolling</div>
     <div class="wf-row">
-      <div class="wf-label">Education</div>
-      <div class="wf-content">
-        <div class="wf-block tall center">
-          <strong>What's in it</strong>
-          <div class="sub">Adaptogens · hemp extract · magnesium</div>
-          <div style="font-size:10px;color:var(--ink-3);margin-top:4px;">Tap to learn more</div>
-        </div>
-        <div class="wf-block tall center">
-          <strong>Why it works</strong>
-          <div class="sub">Ingredients compound over time · reduce cortisol · calm nervous system</div>
-        </div>
-        <div class="wf-block tall center">
-          <strong>When to use it</strong>
-          <div class="sub">Morning · after work · social swap · wind-down ritual</div>
-        </div>
+      <div class="wf-lbl">Education</div>
+      <div class="wf-blocks">
+        <div class="wf-b tall center"><strong>What's in it</strong><div class="sub">Adaptogens · hemp · magnesium · tap to learn more</div></div>
+        <div class="wf-b tall center"><strong>Why it works</strong><div class="sub">Ingredients compound over time · reduce cortisol</div></div>
+        <div class="wf-b tall center"><strong>When to use it</strong><div class="sub">Morning · after work · social swap · wind-down</div></div>
       </div>
     </div>
-    <div class="annot green">CRO: add "why" behind each product to generate demand · properhealth.com 3-button formula pattern from reference deck · no scrolling required to get full picture</div>
+    <div class="note green">CRO: add "why" behind each product to generate demand · properhealth.com 3-button pattern from reference deck</div>
   </div>
 
-  <!-- SUBSCRIPTION -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">F</span>
-      <span class="section-title">Subscription · Health benefits framing — not discount-first</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Subscription · health benefits first, not discount first</div>
     <div class="wf-row">
-      <div class="wf-label">Subscribe</div>
-      <div class="wf-content">
-        <div class="wf-block hero" style="flex:3;">
-          <strong>"Ingredients that compound. Results that build."</strong>
-          <div class="sub">Daily ritual framing — not "save 15%" · educate on adaptogen compounding efficacy</div>
-        </div>
-        <div class="wf-block hero success center" style="flex:2;">
-          <strong>Subscribe & save →</strong>
-          <div style="font-size:11px;color:var(--green);margin-top:6px;">★★★★★  75% of customers subscribe</div>
-        </div>
+      <div class="wf-lbl">Subscribe</div>
+      <div class="wf-blocks">
+        <div class="wf-b xtall" style="flex:3;"><strong>"Ingredients that compound. Results that build."</strong><div class="sub">Daily ritual framing · not "save 15%"</div></div>
+        <div class="wf-b xtall success center" style="flex:2;"><strong>Subscribe & save →</strong><div style="font-size:11px;margin-top:6px;">★★★★★ 75% of customers subscribe</div></div>
       </div>
     </div>
-    <div class="annot red">CRO: 75% of purchases from returning customers → subscription is the economic engine · frame through benefit compounding not discounts (Eric's recommendation from meeting) · shortens CAC payback period</div>
+    <div class="note red">CRO: 75% of purchases from returning customers · subscription is the economic engine · Eric's rec: frame through benefit compounding not discounts</div>
   </div>
 
-  <!-- UGC -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">G</span>
-      <span class="section-title">Community + UGC · Video testimonials with direct product links</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">UGC + video testimonials</div>
     <div class="wf-row">
-      <div class="wf-label">UGC / reviews</div>
-      <div class="wf-content">
-        <div class="wf-block tall img center">[ Video ]<br>@handle · verified<br>product link</div>
-        <div class="wf-block tall img center">[ Video ]<br>@handle · verified<br>product link</div>
-        <div class="wf-block tall img center">[ Video ]<br>@handle · verified<br>product link</div>
-        <div class="wf-block tall img center">[ Video ]<br>@handle · verified<br>product link</div>
+      <div class="wf-lbl">UGC</div>
+      <div class="wf-blocks">
+        <div class="wf-b tall img center">[ Video ] @handle<br>verified · product link</div>
+        <div class="wf-b tall img center">[ Video ] @handle<br>verified · product link</div>
+        <div class="wf-b tall img center">[ Video ] @handle<br>verified · product link</div>
+        <div class="wf-b tall img center">[ Video ] @handle<br>verified · product link</div>
       </div>
     </div>
-    <div class="annot">CRO: video testimonials with captions, user handles, and direct product links · reflects TikTok/Meta/influencer traffic sources · replaces static quote carousel</div>
+    <div class="note">Video testimonials with captions, handles, and direct product links · reflects TikTok/Meta/influencer traffic</div>
   </div>
 
-  <!-- CHANNEL ROUTING -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">H</span>
-      <span class="section-title">Channel routing · Amazon dominant · Store locator mid-page</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Where to buy · Amazon dominant · store locator mid-page</div>
     <div class="wf-row">
-      <div class="wf-label">Where to buy</div>
-      <div class="wf-content">
-        <div class="wf-block xtall primary center" style="flex:2.5;">
-          <strong>Buy on Amazon ↗</strong>
-          <div class="sub">Prime eligible · 50,000+ reviews · fast shipping</div>
-        </div>
-        <div class="wf-block xtall center" style="flex:1.5;">
-          <strong>Find in store</strong>
-          <div class="sub">Whole Foods · Target · 3,000+ stores</div>
-          <div class="cta-s">Store locator →</div>
-        </div>
-        <div class="wf-block xtall muted center" style="flex:1.5;">
-          <strong>Shop direct</strong>
-          <div class="sub">Build your own pack · bundles · DTC</div>
-        </div>
+      <div class="wf-lbl">Channel</div>
+      <div class="wf-blocks">
+        <div class="wf-b xtall primary center" style="flex:2.5;"><strong>Buy on Amazon ↗</strong><div class="sub">Prime eligible · 50,000+ reviews · fast shipping</div></div>
+        <div class="wf-b xtall center" style="flex:1.5;"><strong>Find in store</strong><div class="sub">Whole Foods · Target · 3,000+ stores</div><div class="cta s">Store locator →</div></div>
+        <div class="wf-b xtall muted center" style="flex:1.5;"><strong>Shop direct</strong><div class="sub">Build your own pack · bundles</div></div>
       </div>
     </div>
-    <div class="annot red">Amazon = 70% of sales → must be visually dominant, not an afterthought · custom store locator mid-page (replacing Destiny per meeting) · pulls from scan data (Simon confirmed)</div>
+    <div class="note red">Amazon = 70% of sales · must be visually dominant · custom store locator mid-page replacing Destiny · pulls from scan data</div>
   </div>
 
-  <!-- FOOTER -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">I</span>
-      <span class="section-title">Footer · Cloud shape background (2D, non-intrusive)</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Footer</div>
     <div class="wf-row">
-      <div class="wf-label">Footer</div>
-      <div class="wf-content">
-        <div class="wf-block center muted">Shop</div>
-        <div class="wf-block center muted">Learn</div>
-        <div class="wf-block center muted">Where to buy</div>
-        <div class="wf-block center muted">Subscribe</div>
-        <div class="wf-block center muted">Social links</div>
-        <div class="wf-block center" style="flex:2;background:var(--bg-3);border-style:dashed;color:var(--ink-3);font-style:italic;font-size:11px;">[ Cloud shape background — 2D, non-intrusive ]</div>
+      <div class="wf-lbl">Footer</div>
+      <div class="wf-blocks">
+        <div class="wf-b muted center">Shop</div>
+        <div class="wf-b muted center">Learn</div>
+        <div class="wf-b muted center">Where to buy</div>
+        <div class="wf-b muted center">Subscribe</div>
+        <div class="wf-b img center" style="flex:2;">[ Cloud shape bg · 2D, non-intrusive ]</div>
       </div>
     </div>
-    <div class="annot">Meeting: cloud imagery retained but refined to 2D · Johnny's Dirty Soda footer cloud background pattern from reference deck</div>
+    <div class="note">Cloud imagery retained but 2D per meeting decision · Johnny's Dirty Soda footer pattern from reference deck</div>
   </div>
-</section>
+</div>
 
-<!-- PAGE 2: PLP -->
-<section class="page" id="plp">
+<!-- PLP -->
+<div class="page" id="plp">
   <div class="page-header">
-    <span class="page-num">02</span>
-    <h2 class="page-title">PLP — Product list page</h2>
+    <span class="page-tag">02</span>
+    <div class="page-title">PLP — product list page</div>
   </div>
-  <div class="page-desc">Collections organized by need state · lifestyle-first product cards · subscribe as primary CTA on every card · dual path to purchase</div>
+  <div class="page-desc">Collections by need state · lifestyle-first cards · subscribe as primary CTA on every card</div>
 
-  <!-- COLLECTION HEADER -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">A</span>
-      <span class="section-title">Collection header · Need-state framing — not just a category name</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Collection header · need-state framing</div>
     <div class="wf-row">
-      <div class="wf-label">Hero</div>
-      <div class="wf-content">
-        <div class="wf-block hero" style="flex:3;">
-          <strong>"Help me unwind"</strong>
-          <div class="sub">Benefit statement — what these products do for you (1–2 lines)</div>
-          <div style="margin-top:8px;display:flex;gap:8px;">
-            <span style="font-size:11px;color:var(--ink-2);border:1px solid var(--rule-2);padding:3px 10px;border-radius:4px;">Shop all</span>
-            <span style="font-size:11px;font-weight:500;color:var(--green);">Subscribe & save</span>
-          </div>
-        </div>
-        <div class="wf-block hero img" style="flex:2;">[ Collection lifestyle image ]</div>
+      <div class="wf-lbl">Hero</div>
+      <div class="wf-blocks">
+        <div class="wf-b xtall" style="flex:3;"><strong>"Help me unwind"</strong><div class="sub">Benefit statement · what these products do (1–2 lines)</div><div style="margin-top:8px;display:flex;gap:8px;"><span class="cta t">Shop all</span><span class="cta p">Subscribe & save</span></div></div>
+        <div class="wf-b xtall img" style="flex:2;">[ Collection lifestyle image ]</div>
       </div>
     </div>
-    <div class="annot">Need-state framing matches nav language throughout · benefit-led header generates demand before users even see products</div>
+    <div class="note">Need-state framing matches nav language · benefit-led header generates demand before users see products</div>
   </div>
 
-  <!-- FILTERS -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">B</span>
-      <span class="section-title">Filter + sort bar</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Filter + sort</div>
     <div class="wf-row">
-      <div class="wf-label">Filters</div>
-      <div class="wf-content">
-        <div class="wf-block" style="padding:10px 14px;">
-          <div class="chip-strip">
-            <span class="chip active">All products</span>
+      <div class="wf-lbl">Filters</div>
+      <div class="wf-blocks">
+        <div class="wf-b" style="padding:10px 12px;">
+          <div class="chips">
+            <span class="chip on">All products</span>
             <span class="chip">Mood drinks</span>
             <span class="chip">Zero proof</span>
             <span class="chip">Powders</span>
@@ -811,386 +524,242 @@
         </div>
       </div>
     </div>
-    <div class="annot">Filter by product line + purchase type · sort by best sellers, newest, price</div>
   </div>
 
-  <!-- PRODUCT GRID -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">C</span>
-      <span class="section-title">Product grid · 4-column desktop · 2-column mobile · Lifestyle-first · dual CTA</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Product grid · 4-col desktop · 2-col mobile · lifestyle-first</div>
     <div class="card-grid">
-      <div class="prod-card">
-        <div class="prod-card-img">[ Lifestyle image — flavor scene ]</div>
-        <div class="prod-card-body">
-          <div class="prod-card-name">Mood · Blackberry Chai</div>
-          <div class="prod-card-sub">Calm · unwind · adaptogen blend</div>
-          <div class="prod-card-stars">★★★★★ (2,400 reviews)</div>
-          <div class="prod-card-attrs">Adaptogens · 0g sugar · 15 cal · real fruit</div>
-          <div class="prod-card-price">$24.99 <span>· Save 11% with sub</span></div>
-          <div class="prod-card-cta-p">Subscribe & save →</div>
-          <div class="prod-card-cta-s">Add to cart</div>
-          <div class="prod-card-cta-t">Buy on Amazon ↗</div>
+      <div class="pcard">
+        <div class="pcard-img">[ Lifestyle image ]</div>
+        <div class="pcard-body">
+          <div class="pcard-name">Mood · Blackberry Chai</div>
+          <div class="pcard-sub">Calm · unwind · adaptogen blend</div>
+          <div class="pcard-stars">★★★★★ (2,400)</div>
+          <div class="pcard-attrs">Adaptogens · 0g sugar · 15 cal</div>
+          <div class="pcard-price">$24.99 <span>· Save 11% sub</span></div>
+          <div class="pc-cta p">Subscribe & save →</div>
+          <div class="pc-cta s">Add to cart</div>
+          <div class="pc-cta t">Buy on Amazon ↗</div>
         </div>
       </div>
-      <div class="prod-card">
-        <div class="prod-card-img">[ Lifestyle image — flavor scene ]</div>
-        <div class="prod-card-body">
-          <div class="prod-card-name">Zero Proof · Margarita</div>
-          <div class="prod-card-sub">Social · happy hour · 0% ABV</div>
-          <div class="prod-card-stars">★★★★★ (1,800 reviews)</div>
-          <div class="prod-card-attrs">0% ABV · real fruit · 12 cal</div>
-          <div class="prod-card-price">$28.99 <span>· Save 11% with sub</span></div>
-          <div class="prod-card-cta-p">Subscribe & save →</div>
-          <div class="prod-card-cta-s">Add to cart</div>
-          <div class="prod-card-cta-t">Buy on Amazon ↗</div>
+      <div class="pcard">
+        <div class="pcard-img">[ Lifestyle image ]</div>
+        <div class="pcard-body">
+          <div class="pcard-name">Zero Proof · Margarita</div>
+          <div class="pcard-sub">Social · happy hour · 0% ABV</div>
+          <div class="pcard-stars">★★★★★ (1,800)</div>
+          <div class="pcard-attrs">0% ABV · real fruit · 12 cal</div>
+          <div class="pcard-price">$28.99 <span>· Save 11% sub</span></div>
+          <div class="pc-cta p">Subscribe & save →</div>
+          <div class="pc-cta s">Add to cart</div>
+          <div class="pc-cta t">Buy on Amazon ↗</div>
         </div>
       </div>
-      <div class="prod-card">
-        <div class="prod-card-img">[ Lifestyle image — flavor scene ]</div>
-        <div class="prod-card-body">
-          <div class="prod-card-name">Mood Powder · Original</div>
-          <div class="prod-card-sub">Daily ritual · functional wellness</div>
-          <div class="prod-card-stars">★★★★☆ (980 reviews)</div>
-          <div class="prod-card-attrs">Adaptogens · magnesium · daily ritual</div>
-          <div class="prod-card-price">$34.99 <span>· Save 11% with sub</span></div>
-          <div class="prod-card-cta-p">Subscribe & save →</div>
-          <div class="prod-card-cta-s">Add to cart</div>
-          <div class="prod-card-cta-t">Buy on Amazon ↗</div>
+      <div class="pcard">
+        <div class="pcard-img">[ Lifestyle image ]</div>
+        <div class="pcard-body">
+          <div class="pcard-name">Mood Powder · Original</div>
+          <div class="pcard-sub">Daily ritual · functional wellness</div>
+          <div class="pcard-stars">★★★★☆ (980)</div>
+          <div class="pcard-attrs">Adaptogens · magnesium</div>
+          <div class="pcard-price">$34.99 <span>· Save 11% sub</span></div>
+          <div class="pc-cta p">Subscribe & save →</div>
+          <div class="pc-cta s">Add to cart</div>
+          <div class="pc-cta t">Buy on Amazon ↗</div>
         </div>
       </div>
-      <div class="prod-card">
-        <div class="prod-card-img">[ Bundle / sampler image ]</div>
-        <div class="prod-card-body">
-          <div class="prod-card-name">Happy Hour Sampler</div>
-          <div class="prod-card-sub">Try all 3 lines · best for new customers</div>
-          <div class="prod-card-stars">★★★★★ (640 reviews)</div>
-          <div class="prod-card-attrs">Mix of all product lines · best value</div>
-          <div class="prod-card-price">$49.99 <span>· Best value bundle</span></div>
-          <div class="prod-card-cta-p">Subscribe & save →</div>
-          <div class="prod-card-cta-s">Add to cart</div>
-          <div class="prod-card-cta-t">Buy on Amazon ↗</div>
+      <div class="pcard">
+        <div class="pcard-img">[ Bundle image ]</div>
+        <div class="pcard-body">
+          <div class="pcard-name">Happy Hour Sampler</div>
+          <div class="pcard-sub">Try all 3 lines · best for new customers</div>
+          <div class="pcard-stars">★★★★★ (640)</div>
+          <div class="pcard-attrs">Mix of all lines · best value</div>
+          <div class="pcard-price">$49.99 <span>· Best value</span></div>
+          <div class="pc-cta p">Subscribe & save →</div>
+          <div class="pc-cta s">Add to cart</div>
         </div>
       </div>
     </div>
-    <div class="annot red">CRO: lifestyle imagery over packaging shots · attribute icons answer hesitation questions (sugar? calories? ingredients?) · Subscribe = primary CTA on every card · Amazon as explicit tertiary · % savings not $ amount (11% feels better than "Save $2.75")</div>
+    <div class="note red">CRO: lifestyle imagery over packaging · attribute icons answer hesitation questions · subscribe = primary CTA · % savings not $ amount</div>
   </div>
 
-  <!-- EDUCATION STRIP -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">D</span>
-      <span class="section-title">Education strip · Inline · Generate demand, not just capture it</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Education strip · generate demand, not just capture it</div>
     <div class="wf-row">
-      <div class="wf-label">Education</div>
-      <div class="wf-content">
-        <div class="wf-block tall center">
-          <strong>What's in it</strong>
-          <div class="sub">Adaptogens explained simply</div>
-        </div>
-        <div class="wf-block tall center">
-          <strong>How it builds</strong>
-          <div class="sub">Daily compounding efficacy</div>
-        </div>
-        <div class="wf-block tall center">
-          <strong>When to drink</strong>
-          <div class="sub">Morning · afternoon · wind-down</div>
-        </div>
+      <div class="wf-lbl">Education</div>
+      <div class="wf-blocks">
+        <div class="wf-b tall center"><strong>What's in it</strong><div class="sub">Adaptogens explained simply</div></div>
+        <div class="wf-b tall center"><strong>How it builds</strong><div class="sub">Daily compounding efficacy</div></div>
+        <div class="wf-b tall center"><strong>When to drink</strong><div class="sub">Morning · afternoon · wind-down</div></div>
       </div>
     </div>
-    <div class="annot green">CRO: add "why" behind each product type · generate demand not just capture existing intent · keeps users engaged mid-scroll</div>
+    <div class="note green">CRO: add "why" per product type · keeps users engaged mid-scroll</div>
   </div>
 
-  <!-- TERTIARY CTAS -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">E</span>
-      <span class="section-title">Tertiary CTAs · Retail + custom DTC offer</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Tertiary CTAs</div>
     <div class="wf-row">
-      <div class="wf-label">Try Recess</div>
-      <div class="wf-content">
-        <div class="wf-block amber center" style="flex:2;">
-          <strong>Want to try Recess today? → Find in store near you</strong>
-        </div>
-        <div class="wf-block primary center" style="flex:1.5;">
-          <strong>Build your own 12-pack →</strong>
-          <div class="sub">Custom DTC offer</div>
-        </div>
+      <div class="wf-lbl">Try Recess</div>
+      <div class="wf-blocks">
+        <div class="wf-b amber center" style="flex:2;"><strong>Want to try Recess today? → Find in store near you</strong></div>
+        <div class="wf-b primary center"><strong>Build your own 12-pack →</strong><div class="sub">Custom DTC offer</div></div>
       </div>
     </div>
-    <div class="annot">CRO: tertiary CTA to where-to-buy page · custom "build your own pack" DTC offer to price-match Amazon and differentiate</div>
   </div>
-</section>
+</div>
 
-<!-- PAGE 3: PDP -->
-<section class="page" id="pdp">
+<!-- PDP -->
+<div class="page" id="pdp">
   <div class="page-header">
-    <span class="page-num">03</span>
-    <h2 class="page-title">PDP — Product detail page</h2>
+    <span class="page-tag">03</span>
+    <div class="page-title">PDP — product detail page</div>
   </div>
-  <div class="page-desc">Subscribe-first buy zone · education-led · omnichannel routing at multiple points · announcement bar flips to promo message</div>
+  <div class="page-desc">Subscribe-first · education-led · omnichannel routing · announcement bar flips to promo</div>
 
-  <!-- NAV -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">A</span>
-      <span class="section-title">Nav + announcement · Bar switches to promo on PDPs</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Nav · announcement bar flips to promo on PDPs</div>
     <div class="wf-row">
-      <div class="wf-label">Nav</div>
-      <div class="wf-content">
-        <div class="wf-block dark" style="flex:0 0 80px;"><strong style="color:white;">Recess</strong></div>
-        <div class="wf-block" style="flex:4;">Lift me up &nbsp;·&nbsp; Help me unwind &nbsp;·&nbsp; Happy hour &nbsp;·&nbsp; Wellness &nbsp;·&nbsp; Where to buy</div>
-        <div class="wf-block amber center" style="flex:0 0 200px;">Free shipping on orders $50+ 🚚</div>
-        <div class="wf-block success center" style="flex:0 0 120px;"><strong>Subscribe</strong></div>
-        <div class="wf-block muted center" style="flex:0 0 60px;">Cart</div>
+      <div class="wf-lbl">Nav</div>
+      <div class="wf-blocks">
+        <div class="wf-b dark" style="flex:0 0 70px;"><strong style="color:white;">Recess</strong></div>
+        <div class="wf-b" style="flex:4;">Lift me up · Help me unwind · Happy hour · Wellness · Where to buy</div>
+        <div class="wf-b amber center" style="flex:0 0 180px;">Free shipping on orders $50+</div>
+        <div class="wf-b success center" style="flex:0 0 110px;"><strong>Subscribe</strong></div>
+        <div class="wf-b muted center" style="flex:0 0 60px;">Cart</div>
       </div>
     </div>
-    <div class="annot blue">CRO: announcement bar context-switches — PDPs show free shipping / discount offer, not brand statement · increases purchase confidence at key decision moment</div>
+    <div class="note blue">CRO: announcement bar context-switches on PDPs · increases purchase confidence at key decision moment</div>
     <br>
     <div class="wf-row">
-      <div class="wf-label">Breadcrumb</div>
-      <div class="wf-content">
-        <div class="wf-block muted" style="font-size:11px;color:var(--ink-3);">Home &nbsp;›&nbsp; Help me unwind &nbsp;›&nbsp; Mood drinks &nbsp;›&nbsp; Blackberry Chai</div>
+      <div class="wf-lbl">Breadcrumb</div>
+      <div class="wf-blocks">
+        <div class="wf-b muted" style="font-size:11px;color:var(--ink-3);">Home · Help me unwind · Mood drinks · Blackberry Chai</div>
       </div>
     </div>
   </div>
 
-  <!-- HERO BUY ZONE -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">B</span>
-      <span class="section-title">Product hero + buy zone · Image left · Purchase zone right · Subscribe = primary</span>
-      <div class="section-line"></div>
-    </div>
-    <div class="pdp-hero">
+    <div class="sec-label">Product hero + buy zone · subscribe = primary</div>
+    <div class="pdp-grid">
       <div class="pdp-imgs">
-        <div class="pdp-img-main">[ Hero lifestyle image — full product scene ]</div>
-        <div class="pdp-img-row">
-          <div class="pdp-img-thumb">Img 2<br>ingredients</div>
-          <div class="pdp-img-thumb">Img 3<br>lifestyle</div>
-          <div class="pdp-img-thumb">Img 4<br>can label</div>
+        <div class="pdp-main">[ Hero lifestyle image ]</div>
+        <div class="pdp-thumbs">
+          <div class="pdp-thumb">Img 2<br>ingredients</div>
+          <div class="pdp-thumb">Img 3<br>lifestyle</div>
+          <div class="pdp-thumb">Img 4<br>can label</div>
         </div>
       </div>
-      <div class="buy-zone">
-        <div class="buy-eyebrow">Mood drinks · Help me unwind</div>
+      <div class="buy-box">
+        <div class="buy-ey">Mood drinks · Help me unwind</div>
         <div class="buy-title">Blackberry Chai</div>
-        <div class="buy-sub">Calm · decompress · adaptogen blend</div>
-        <div class="buy-stars">★★★★★ &nbsp;2,400 reviews &nbsp;· &nbsp;<span style="color:var(--blue);font-size:11px;">See Amazon reviews ↗</span></div>
+        <div class="buy-sub2">Calm · decompress · adaptogen blend</div>
+        <div class="buy-stars2">★★★★★ 2,400 reviews · <span style="color:var(--blue);font-size:10px;">See Amazon reviews ↗</span></div>
         <div class="buy-attrs">
-          <span class="attr-tag">Adaptogens</span>
-          <span class="attr-tag">0g sugar</span>
-          <span class="attr-tag">15 cal</span>
-          <span class="attr-tag">Real fruit</span>
-          <span class="attr-tag">No caffeine</span>
+          <span class="attr">Adaptogens</span><span class="attr">0g sugar</span><span class="attr">15 cal</span><span class="attr">Real fruit</span><span class="attr">No caffeine</span>
         </div>
-        <div class="buy-divider"></div>
+        <div class="buy-div"></div>
         <div style="font-size:11px;font-weight:500;color:var(--ink-2);margin-bottom:6px;">Flavor</div>
-        <div class="chip-strip" style="margin-bottom:12px;">
-          <span class="chip active">Blackberry Chai</span>
-          <span class="chip">Peach Ginger</span>
-          <span class="chip">Coconut Lime</span>
+        <div class="chips" style="margin-bottom:12px;">
+          <span class="chip on">Blackberry Chai</span><span class="chip">Peach Ginger</span><span class="chip">Coconut Lime</span>
         </div>
         <div style="font-size:11px;font-weight:500;color:var(--ink-2);margin-bottom:6px;">Pack size</div>
-        <div class="chip-strip" style="margin-bottom:12px;">
-          <span class="chip">8-pack</span>
-          <span class="chip active">12-pack</span>
-          <span class="chip">24-pack</span>
+        <div class="chips" style="margin-bottom:12px;">
+          <span class="chip">8-pack</span><span class="chip on">12-pack</span><span class="chip">24-pack</span>
         </div>
-        <div class="buy-divider"></div>
-        <div class="buy-option-row">
-          <div class="buy-option selected">
-            <div class="opt-label">Subscribe & save</div>
-            <div class="opt-price">$22.31 / delivery</div>
-            <div class="opt-save">Save 11% every order</div>
-          </div>
-          <div class="buy-option">
-            <div class="opt-label">One-time purchase</div>
-            <div class="opt-price">$24.99</div>
-          </div>
+        <div class="buy-div"></div>
+        <div class="buy-opts">
+          <div class="buy-opt on"><div class="opt-lbl">Subscribe & save</div><div class="opt-price">$22.31</div><div class="opt-save">Save 11% every order</div></div>
+          <div class="buy-opt"><div class="opt-lbl">One-time</div><div class="opt-price">$24.99</div></div>
         </div>
-        <div class="buy-cta-p">Subscribe & save → (primary)</div>
-        <div class="buy-cta-s">Add to cart (secondary)</div>
-        <div class="buy-cta-t">Buy on Amazon ↗ · Prime eligible</div>
+        <div class="bcta p">Subscribe & save → (primary)</div>
+        <div class="bcta s">Add to cart</div>
+        <div class="bcta t">Buy on Amazon ↗ · Prime eligible</div>
         <div class="buy-trust">Free shipping on orders $50+ · 30-day returns</div>
       </div>
     </div>
-    <div class="annot red">Subscribe = primary CTA (largest, highest weight) · Amazon as explicit tertiary with Prime callout · review count + Amazon star import in hero · attribute icons pre-empt hesitation questions · % savings not $ · free shipping confirmation in buy zone · flavor + size selectors above all CTAs</div>
+    <div class="note red">Subscribe = primary CTA · Amazon as explicit tertiary · % savings not $ · free shipping in buy zone · attribute icons pre-empt hesitation · flavor + size above CTAs</div>
   </div>
 
-  <!-- EDUCATION -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">C</span>
-      <span class="section-title">Product education · 3-tab accordion + live text nutrition drawer</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Education · 3-tab accordion + live text nutrition</div>
     <div class="wf-row">
-      <div class="wf-label">Education tabs</div>
-      <div class="wf-content">
-        <div class="wf-block tall center">
-          <strong>What's in it</strong>
-          <div class="sub">Ashwagandha · Hemp extract · L-theanine</div>
-          <div style="font-size:10px;color:var(--ink-3);margin-top:4px;">Tap to expand ingredient drawer</div>
-        </div>
-        <div class="wf-block tall center">
-          <strong>Why it works</strong>
-          <div class="sub">Calm nervous system · reduce cortisol · the science, simplified</div>
-        </div>
-        <div class="wf-block tall center">
-          <strong>When to drink</strong>
-          <div class="sub">After work · before bed · social swap · use cases by time of day</div>
-        </div>
+      <div class="wf-lbl">Education</div>
+      <div class="wf-blocks">
+        <div class="wf-b tall center"><strong>What's in it</strong><div class="sub">Ashwagandha · Hemp · L-theanine · tap to expand</div></div>
+        <div class="wf-b tall center"><strong>Why it works</strong><div class="sub">Calm nervous system · reduce cortisol · simplified</div></div>
+        <div class="wf-b tall center"><strong>When to drink</strong><div class="sub">After work · before bed · social swap</div></div>
       </div>
     </div>
     <div class="wf-row">
-      <div class="wf-label">Nutrition</div>
-      <div class="wf-content">
-        <div class="wf-block primary center">Nutrition facts &nbsp;·&nbsp; <strong>[ View full label ↓ ]</strong> &nbsp;— Live text drawer (not an image) for SEO + GEO discoverability</div>
+      <div class="wf-lbl">Nutrition</div>
+      <div class="wf-blocks">
+        <div class="wf-b primary center">Nutrition facts · <strong>[ View full label ↓ ]</strong> · live text drawer for SEO + GEO</div>
       </div>
     </div>
-    <div class="annot green">CRO: live text nutrition info (not image) → enables SEO and GEO discoverability · Plants to the Rescue "when to use" section pattern · properhealth.com 3-button no-scroll formula</div>
+    <div class="note green">CRO: live text not image → SEO and GEO discoverability · Plants to the Rescue "when to use" pattern · properhealth.com 3-button no-scroll</div>
   </div>
 
-  <!-- SUBSCRIPTION BENEFITS -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">D</span>
-      <span class="section-title">Subscription benefits · Health-first framing</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Subscription benefits · health first</div>
     <div class="wf-row">
-      <div class="wf-label">Subscribe</div>
-      <div class="wf-content">
-        <div class="wf-block tall center">
-          <strong>Builds over time</strong>
-          <div class="sub">Adaptogens compound with consistent daily use · results improve over weeks</div>
-        </div>
-        <div class="wf-block tall center">
-          <strong>Never run out</strong>
-          <div class="sub">Set your delivery frequency · skip or pause anytime</div>
-        </div>
-        <div class="wf-block tall success center">
-          <strong>Save 11%</strong>
-          <div class="sub">Every recurring order · cancel anytime</div>
-        </div>
+      <div class="wf-lbl">Subscribe</div>
+      <div class="wf-blocks">
+        <div class="wf-b tall center"><strong>Builds over time</strong><div class="sub">Adaptogens compound with daily use · results improve over weeks</div></div>
+        <div class="wf-b tall center"><strong>Never run out</strong><div class="sub">Set your frequency · skip or pause anytime</div></div>
+        <div class="wf-b tall success center"><strong>Save 11%</strong><div class="sub">Every order · cancel anytime</div></div>
       </div>
     </div>
-    <div class="annot">CRO: lead with health benefit compounding first, savings last — Eric's specific recommendation from meeting · reframes subscription as daily wellness ritual not just a discount</div>
+    <div class="note">Lead with benefit compounding first, savings last · Eric's recommendation from meeting</div>
   </div>
 
-  <!-- REVIEWS -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">E</span>
-      <span class="section-title">Social proof · Video UGC + verified reviews</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Reviews + UGC</div>
     <div class="wf-row">
-      <div class="wf-label">Reviews / UGC</div>
-      <div class="wf-content">
-        <div class="wf-block tall img center">[ Video ]<br>@handle<br>Verified · product link</div>
-        <div class="wf-block tall img center">[ Video ]<br>@handle<br>Verified · product link</div>
-        <div class="wf-block tall center">
-          <div class="stars">★★★★★</div>
-          <div style="font-size:11px;font-weight:500;margin-top:4px;">"Finally a real alternative"</div>
-          <div class="sub">Verified buyer · Boston, MA</div>
-        </div>
-        <div class="wf-block tall center">
-          <div class="stars">★★★★★</div>
-          <div style="font-size:11px;font-weight:500;margin-top:4px;">"Drink it every night now"</div>
-          <div class="sub">Verified buyer · Austin, TX</div>
-        </div>
+      <div class="wf-lbl">Reviews</div>
+      <div class="wf-blocks">
+        <div class="wf-b tall img center">[ Video ] @handle<br>verified · product link</div>
+        <div class="wf-b tall img center">[ Video ] @handle<br>verified · product link</div>
+        <div class="wf-b tall center"><div style="color:#b87a00;">★★★★★</div><strong>"Finally a real alternative"</strong><div class="sub">Verified · Boston MA</div></div>
+        <div class="wf-b tall center"><div style="color:#b87a00;">★★★★★</div><strong>"Drink it every night now"</strong><div class="sub">Verified · Austin TX</div></div>
       </div>
     </div>
-    <div class="annot">CRO: video testimonials with captions, handles, and direct product links · pull Amazon star ratings if needed to populate reviews faster</div>
   </div>
 
-  <!-- CROSS SELL -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-num">F</span>
-      <span class="section-title">Cross-sell · Need-state based · Sampler as new customer gateway</span>
-      <div class="section-line"></div>
-    </div>
+    <div class="sec-label">Cross-sell + where to buy</div>
     <div class="wf-row">
-      <div class="wf-label">Cross-sell</div>
-      <div class="wf-content">
-        <div class="wf-block tall center">
-          <strong>Mood · Peach Ginger</strong>
-          <div class="sub">Same need state</div>
-          <div class="cta-p">Subscribe →</div>
-        </div>
-        <div class="wf-block tall center">
-          <strong>Zero Proof · Margarita</strong>
-          <div class="sub">Different occasion</div>
-          <div class="cta-p">Subscribe →</div>
-        </div>
-        <div class="wf-block tall center" style="flex:1.5;">
-          <strong>Happy Hour Sampler</strong>
-          <div class="sub">Best for new customers — try all lines</div>
-          <div class="cta-p">Subscribe →</div>
-        </div>
+      <div class="wf-lbl">Cross-sell</div>
+      <div class="wf-blocks">
+        <div class="wf-b tall center"><strong>Mood · Peach Ginger</strong><div class="sub">Same need state</div><div class="cta p">Subscribe →</div></div>
+        <div class="wf-b tall center"><strong>Zero Proof · Margarita</strong><div class="sub">Different occasion</div><div class="cta p">Subscribe →</div></div>
+        <div class="wf-b tall center" style="flex:1.5;"><strong>Happy Hour Sampler</strong><div class="sub">Best for new customers</div><div class="cta p">Subscribe →</div></div>
       </div>
     </div>
-    <div class="annot">CRO: cross-sell in drawer cart AND on PDP · sampler pack highlighted as best entry point for new customers</div>
-  </div>
-
-  <!-- WHERE TO BUY AGAIN -->
-  <div class="section">
-    <div class="section-header">
-      <span class="section-num">G</span>
-      <span class="section-title">Where to buy · Channel routing repeated at bottom of PDP</span>
-      <div class="section-line"></div>
-    </div>
     <div class="wf-row">
-      <div class="wf-label">Buy options</div>
-      <div class="wf-content">
-        <div class="wf-block primary center" style="flex:2.5;">
-          <strong>Buy on Amazon ↗ · Prime eligible · 50,000+ reviews</strong>
-        </div>
-        <div class="wf-block amber center" style="flex:1.5;">
-          <strong>Want to try Recess today?</strong>
-          <div class="sub">Find in store near you →</div>
-        </div>
+      <div class="wf-lbl">Buy options</div>
+      <div class="wf-blocks">
+        <div class="wf-b primary center" style="flex:2.5;"><strong>Buy on Amazon ↗ · Prime eligible · 50,000+ reviews</strong></div>
+        <div class="wf-b amber center" style="flex:1.5;"><strong>Want to try Recess today?</strong><div class="sub">Find in store →</div></div>
       </div>
     </div>
   </div>
 
-  <!-- OPEN QUESTIONS -->
-  <div class="note-box">
-    <strong>Open items for Monday + further research:</strong>&nbsp;
-    Brand guidelines from Kelly (colors, typography, visual hierarchy) &nbsp;·&nbsp;
-    Final solution-based nav category names &nbsp;·&nbsp;
-    Which retail partners to feature in store locator &nbsp;·&nbsp;
-    Amazon ASIN deep-link strategy per product line &nbsp;·&nbsp;
-    Victor's store locator technical questions &nbsp;·&nbsp;
-    Subscription platform confirmation (Shopify native vs third-party) &nbsp;·&nbsp;
-    Mobile sticky add-to-cart bar behavior &nbsp;·&nbsp;
-    Drawer cart cross-sell configuration
+  <div class="open-q">
+    <strong>Still open for next meeting:</strong> Brand guidelines from Kelly (colors, type, hierarchy) · Final nav category names · Retail partners for store locator · Subscription platform (Shopify native vs third party) · Info pages final list · Landing page scope
   </div>
-</section>
+</div>
 
 <script>
-  const links = document.querySelectorAll('.doc-nav a');
-  const sections = ['homepage','plp','pdp'];
-  window.addEventListener('scroll', () => {
-    let current = sections[0];
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && el.getBoundingClientRect().top < 120) current = id;
-    });
-    links.forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-    });
+const links = document.querySelectorAll('.topbar a');
+window.addEventListener('scroll', () => {
+  let cur = 'home';
+  ['home','plp','pdp'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 100) cur = id;
   });
+  links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+});
 </script>
 </body>
 </html>
