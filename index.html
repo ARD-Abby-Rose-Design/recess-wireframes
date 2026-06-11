@@ -376,7 +376,10 @@
   </div>
 
   <div class="section">
-    <div class="sec-label">"Find your moment" · need-state selector</div>
+    <div class="sec-label">"Find your moment" · need-state selector · filters product cards below</div>
+    <div style="margin-bottom:10px;padding:7px 12px;background:#e8f4fd;border:1px solid #a8c8f0;border-radius:6px;font-size:11px;color:#0c447c;">
+      ℹ Interaction note: clicking a chip filters the product cards below it on the same page — no page navigation. Cards swap instantly to show relevant products for that mood. A "see all" link takes users to the full collection page if they want to explore further. Recommended: show 3 to 4 hero products per category, not the full catalog.
+    </div>
     <div class="wf-row">
       <div class="wf-lbl">Mood chips</div>
       <div class="wf-blocks">
@@ -390,16 +393,78 @@
         </div>
       </div>
     </div>
-    <div class="wf-row">
-      <div class="wf-lbl">Product cards</div>
-      <div class="wf-blocks">
-        <div class="wf-b tall ta-purple center"><strong>Summer must haves</strong><div class="sub">Mood Paradise Sampler · Tropical Bliss · Orange Vanilla · Zero Proof Margaritas · Island Spritz · Paloma · Mojito · Lemon Citrus Powder</div><div class="cta p">Shop · Buy on Amazon →</div></div>
-        <div class="wf-b tall ta-teal center"><strong>Anytime unwind</strong><div class="sub">All Mood drinks · calm · decompress · adaptogen blend</div><div class="cta p">Shop · Buy on Amazon →</div></div>
-        <div class="wf-b tall ta-amber center"><strong>Social unwind</strong><div class="sub">All Zero Proof · happy hour · occasions · 0% ABV</div><div class="cta p">Shop · Buy on Amazon →</div></div>
-        <div class="wf-b tall ta-muted center"><strong>Unwind on-the-go</strong><div class="sub">All Powders · daily ritual · functional wellness</div><div class="cta p">Shop · Buy on Amazon →</div></div>
+
+    <div class="wf-row" style="margin-top:8px;">
+      <div class="wf-lbl" style="padding-top:0;font-size:10px;color:#aaa;">Product card<br>layout</div>
+      <div class="wf-blocks" style="gap:10px;">
+
+        <!-- CARD ANATOMY -->
+        <div style="flex:1;border:1.5px dashed #ccc;border-radius:8px;overflow:hidden;background:white;max-width:220px;">
+          <div style="background:#e8e5de;height:90px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-style:italic;border-bottom:1px solid #ddd;">[ Lifestyle image — flavor scene ]</div>
+          <div style="padding:10px 12px;">
+            <div style="font-size:9px;font-weight:500;color:#9b6cf0;margin-bottom:2px;text-transform:uppercase;letter-spacing:0.05em;">Mood</div>
+            <div style="font-size:12px;font-weight:500;color:#222;margin-bottom:2px;">Tropical Bliss</div>
+            <div style="font-size:10px;color:#888;margin-bottom:5px;">Calm · unwind · adaptogen blend</div>
+            <div style="display:flex;gap:3px;flex-wrap:wrap;margin-bottom:6px;">
+              <span style="font-size:9px;padding:2px 6px;background:#f1efe8;border:1px solid #ddd;border-radius:4px;color:#666;">0g sugar</span>
+              <span style="font-size:9px;padding:2px 6px;background:#f1efe8;border:1px solid #ddd;border-radius:4px;color:#666;">15 cal</span>
+              <span style="font-size:9px;padding:2px 6px;background:#f1efe8;border:1px solid #ddd;border-radius:4px;color:#666;">real fruit</span>
+            </div>
+            <div style="font-size:10px;color:#b87a00;margin-bottom:4px;">★★★★★ (2,400)</div>
+            <div style="font-size:11px;font-weight:500;color:#222;margin-bottom:8px;">$24.99 <span style="font-size:9px;font-weight:400;color:#1a6644;">· Save 11% sub</span></div>
+            <div style="font-size:10px;font-weight:500;color:white;background:#1a6644;padding:5px 8px;border-radius:5px;text-align:center;margin-bottom:4px;">Subscribe & save → (primary)</div>
+            <div style="font-size:10px;color:#1a5fa8;background:#deeaf8;padding:5px 8px;border-radius:5px;text-align:center;margin-bottom:4px;">Add to cart (secondary)</div>
+            <div style="font-size:9px;color:#888;text-align:center;padding:3px 0;">Buy on Amazon ↗ (tertiary)</div>
+          </div>
+        </div>
+
+        <!-- CARD LABELS -->
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-start;gap:0;padding-top:0;">
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;">
+            <div style="font-size:10px;color:#888;min-width:90px;padding-top:2px;">1 · Lifestyle image</div>
+            <div style="font-size:10px;color:#444;line-height:1.4;">Flavor scene, not packaging on white · mood conveyed visually</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;">
+            <div style="font-size:10px;color:#888;min-width:90px;padding-top:2px;">2 · Product line tag</div>
+            <div style="font-size:10px;color:#444;line-height:1.4;">Mood / Zero Proof / Powder · color-coded per line</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;">
+            <div style="font-size:10px;color:#888;min-width:90px;padding-top:2px;">3 · Product name</div>
+            <div style="font-size:10px;color:#444;line-height:1.4;">e.g. Tropical Bliss</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;">
+            <div style="font-size:10px;color:#888;min-width:90px;padding-top:2px;">4 · Benefit line</div>
+            <div style="font-size:10px;color:#444;line-height:1.4;">One line · mood or occasion</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;">
+            <div style="font-size:10px;color:#888;min-width:90px;padding-top:2px;">5 · Attribute tags</div>
+            <div style="font-size:10px;color:#444;line-height:1.4;">Sugar · calories · key ingredients · answers hesitation questions</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;">
+            <div style="font-size:10px;color:#888;min-width:90px;padding-top:2px;">6 · Star rating</div>
+            <div style="font-size:10px;color:#444;line-height:1.4;">Review count · can pull from Amazon</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;">
+            <div style="font-size:10px;color:#888;min-width:90px;padding-top:2px;">7 · Price</div>
+            <div style="font-size:10px;color:#444;line-height:1.4;">One-time price · % sub savings (not $ amount)</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:4px;">
+            <div style="font-size:10px;color:#888;min-width:90px;padding-top:2px;">8 · CTAs</div>
+            <div style="font-size:10px;color:#444;line-height:1.4;">Subscribe (primary) · Add to cart (secondary) · Amazon (tertiary)</div>
+          </div>
+          <div style="margin-top:6px;padding:6px 10px;background:#fff8e6;border:1px solid #f0c040;border-radius:6px;font-size:10px;color:#7a5500;">⚠ Decision point: confirm whether all 3 CTAs appear on card or simplify to subscribe + Amazon only</div>
+        </div>
+
+        <!-- SEE ALL -->
+        <div style="flex:0 0 100px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;">
+          <div style="font-size:11px;color:#888;text-align:center;">3 to 4 hero products shown per category</div>
+          <div style="font-size:11px;font-weight:500;color:#1a5fa8;text-align:center;padding:6px 12px;border:1px solid #a8c8f0;border-radius:20px;background:#deeaf8;">See all →</div>
+          <div style="font-size:10px;color:#aaa;text-align:center;">goes to full collection PLP</div>
+        </div>
+
       </div>
     </div>
-    <div class="note">Happly "choose your mood" pattern from reference deck · color per product line · lifestyle image + benefit + dual CTA per card</div>
+    <div class="note">Chips filter cards inline · no page reload · see all links to full PLP · 3 to 4 products per mood keeps homepage clean</div>
   </div>
 
   <div class="section">
